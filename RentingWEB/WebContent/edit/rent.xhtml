@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+ 
+  <h:head>
+	<title>Renting Web App</title>
+</h:head>
+<h:body>
+<div>
+
+</div>
+<div>
+ <h:form>
+ <p:growl id="msgs" showDetail="true" />
+    <h:panelGrid columns="2" cellpadding="5">
+        <p:outputLabel for="inline" value="Data - od kiedy:" />
+        <p:calendar id="inline" value="#{rentEdit.test1}" />       
+        </h:panelGrid> 
+ <h:panelGrid>
+        <p:outputLabel for="popup" value="Data -do kiedy" />
+        <p:calendar id="popup" value="#{rentEdit.test2}" />
+        <p:messages />
+        </h:panelGrid>
+  
+        <p:dataTable value="#{rentEdit.users}"
+            selection="#{rentEdit.comparedr}" var="bindrole"
+            rowKey="#{bindrole.idbindrole}">
+            <p:column>
+                #{bindrole.idbindrole}
+            </p:column>
+            <p:column>
+                #{bindrole.user.name}
+            </p:column>
+            <p:column>
+                #{bindrole.role.roleName}
+            </p:column>
+            <p:column selectionMode="multiple" style="width:10%" />
+        </p:dataTable>
+        <p:commandButton value="send" action="#{rentEdit.saveData()}" />
+ <p:dataTable value="#{rentEdit.cars}"
+            selection="#{rentEdit.comparedc}" var="car"
+            rowKey="#{car.idcar}">
+             <p:column>
+                #{car.idcar}
+            </p:column>
+            <p:column>
+                #{car.carname}
+            </p:column>
+             <p:column>
+                #{car.carrmake}
+            </p:column>
+             <p:column>
+                #{car.carregistrationyear}
+            </p:column>
+            <p:column selectionMode="multiple" style="width:8%" />
+        </p:dataTable>
+    </h:form>
+</div>
+</h:body>
+</html>

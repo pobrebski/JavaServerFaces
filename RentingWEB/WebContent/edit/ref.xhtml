@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+ 
+  <h:head>
+ 	 	<title>Renting Web App</title>
+</h:head>
+<h:body>
+<div>
+
+</div>
+<div>
+<p:growl id="msgs" showDetail="true" />
+<p:fieldset style="padding: 1em; border-radius: 0.2em;">
+					<legend>Wprowadź dane tankowania</legend>
+					<h:form><p:panelGrid columns="2" cellpadding="5">
+					 
+						<h:outputLabel for="litre" value="litry:" />
+						<h:inputText id="litre" value="#{refuelingEdit.litre}" />
+						<h:outputLabel for="kilometers" value="kilometry:" />
+						<h:inputText id="kilometers" value="#{refuelingEdit.kilometers}" />						
+					</p:panelGrid>
+					<p:messages />
+				<h:commandButton value="Zapisz" action="#{refuelingEdit.saveData()}"/>
+					<p:button value="Anuluj" outcome="/index"/>
+						</h:form>
+				</p:fieldset>
+		
+        </div>
+      
+</h:body>
+</html>

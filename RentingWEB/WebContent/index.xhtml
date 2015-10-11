@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        
+        <div class="ui-grid-col-4">
+
+        <div>
+<h:form>
+<h:panelGrid columns="2" cellpadding="3">
+<p:commandButton value="PANEL ADMINA" action="/edit/admin/index" style="width:100px;height:100px"/>
+<h:outputText value="przejdz do panelu" /> 
+<p:commandButton value="PANEL ISPIK" action="/ISPIK/ispik1" style="width:100px;height:100px"/>
+<h:outputText value="przejdz do panelu" />           
+            </h:panelGrid>
+            </h:form>
+            </div>
+           
+</div>
+        
+    </div>
+</div>
+
+
+
+<div class="ui-grid ui-grid-responsive">
+
+	<p:dataTable var="car" value="#{carManager.getList()}">
+<p:column>
+<f:facet name="header">
+<h:outputText value="ID" />
+</f:facet>
+<h:outputText value="#{car.idcar}" />
+<f:param name="p" value="#{car.idcar}"/>
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText value="MODEL" />
+</f:facet>
+<h:outputText  value="#{car.carname}"/>
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText value="MARKA" />
+</f:facet>
+<h:outputText value="#{car.carrmake}" />
+</p:column>
+
+								<p:column>
+					<f:facet name="header">
+						<h:outputText value="ROCZNIK" />
+					</f:facet>
+					<h:outputText value="#{car.carregistrationyear}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="SYLWETKA" />
+					</f:facet>
+					<h:outputText value="#{car.cartype}" />
+				</p:column>
+					<p:column>
+					<f:facet name="header">
+						<h:outputText value="KOLOR"/>
+					</f:facet>
+					<h:outputText value="#{car.carcolor}" />
+				</p:column>
+									<p:column>
+					<f:facet name="header">
+						<h:outputText value="opcje" />
+					</f:facet>
+					<h:form>
+			<p:commandButton value="ZAREZERWUJ" action="/edit/admin/index" style="width:150px;height:50px"/>
+			</h:form>
+				</p:column>
+</p:dataTable>
+</div>
+
+</ui:define>
+
+</ui:composition>
+</html>

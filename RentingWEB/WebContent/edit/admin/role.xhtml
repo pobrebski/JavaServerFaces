@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+
+
+<div>
+
+			<h:form>
+			<p:growl id="msgs" showDetail="true" />
+				<fieldset style="padding: 1em; border-radius: 0.2em;">
+					<legend>Edycja rekordu</legend>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel for="roleName" value="nazwa:" />
+						<h:inputText id="roleName" value="#{roleEdit.roleName}" />
+						<h:outputLabel for="roleDescription" value="opis:" />
+						<h:inputText id="roleDescription" value="#{roleEdit.roleDescription}" />
+					</h:panelGrid>
+					<h:messages />
+					<h:commandButton value="Zapisz" action="#{roleEdit.saveData()}" 
+					style="margin-right: 1em;"/>
+					<h:button value="Anuluj" outcome="/index"/>
+				</fieldset>
+			</h:form>
+</div>
+<div>
+<p:dataTable var="role" value="#{roleManager.list}">
+<p:column>
+<f:facet name="header">
+<h:outputText value="ID" />
+</f:facet>
+<h:outputText value="#{role.idrole}" />
+<f:param name="p" value="#{role.getIdrole()}"/>
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText value="Nazwa" />
+</f:facet>
+<h:outputText  value="#{role.roleName}"/>
+
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText value="Kod roli" />
+</f:facet>
+<h:outputText value="#{role.roleCode}" />
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText value="Opis roli" />
+</f:facet>
+<h:outputText value="#{role.roleDescription}" />
+</p:column>
+<!-- more collumns --> 
+
+</p:dataTable>
+</div>
+
+</ui:define>
+</ui:composition>
+</html>

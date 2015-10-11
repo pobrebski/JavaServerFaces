@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>jedit wypozyczenie</title>
+</h:head>
+<h:body style="background-color: #aaa; min-width: 800px; margin: 0;">
+
+	<div style="margin: 1em; background-color: #fff;">
+
+		<div style="padding: 1em; margin-bottom: 1em; border-radius: 0.2em;">
+		<h:panelGrid columns="2" cellpadding="10">
+<h:form>
+    <h:panelGrid columns="2" cellpadding="5">
+        <p:outputLabel for="inline" value="Data - od kiedy:" />
+        <p:calendar id="inline" value="#{rentEdit.test1}" />       
+        </h:panelGrid> 
+ <h:panelGrid>
+        <p:outputLabel for="popup" value="Data -do kiedy" />
+        <p:calendar id="popup" value="#{rentEdit.test2}" />
+        <p:messages />
+        </h:panelGrid>
+  
+          <p:dataTable value="#{rentManager.list}" var="rent"
+				cellpadding="5" border="1" cellspacing="0">      
+
+				<p:column>
+<f:facet name="header">
+<h:outputText value="ID" />
+</f:facet>
+<h:outputText value="#{rent.idrent}"/>
+<f:param name="p" value="#{rent.idrent}"/>
+</p:column>
+            <p:column>
+                #{rent.car.getCarname()}
+            </p:column>
+             <p:column>
+                #{rent.car.carrmake}
+            </p:column>
+             <p:column>
+                #{rent.bindrole.user.username}
+            </p:column>
+           
+        </p:dataTable>
+    </h:form>
+</h:panelGrid>
+	</div>	
+
+	</div>
+
+</h:body>
+</html>

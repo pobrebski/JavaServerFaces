@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+ 
+  <h:head>
+	<title>Renting Web App</title>
+</h:head>
+<h:body>
+<div>
+
+</div>
+<div>
+ <h:form>
+ <p:growl id="msgs" showDetail="true" />
+        <p:dataTable value="#{bindroleEdit.users}"
+            selection="#{bindroleEdit.comparedu}" var="user"
+            rowKey="#{user.iduser}">
+            <p:column>
+                #{user.username}
+            </p:column>
+            <p:column>
+                #{user.surname}
+            </p:column>
+            <p:column>
+             #{user.iduser}
+            </p:column>
+            <p:column selectionMode="multiple" style="width:10%" />
+        </p:dataTable>
+        <p:commandButton value="send" action="#{bindroleEdit.saveData()}" />
+ <p:dataTable value="#{bindroleEdit.roles}"
+            selection="#{bindroleEdit.comparedr}" var="role"
+            rowKey="#{role.idrole}">
+             <p:column>
+                #{idrole}
+            </p:column>
+            <p:column>
+                #{role.roleName}
+            </p:column>
+             <p:column>
+                #{role.roleCode}
+            </p:column>
+             <p:column>
+                #{role.roleDescription}
+            </p:column>
+            <p:column selectionMode="multiple" style="width:8%" />
+        </p:dataTable>
+    </h:form>
+</div>
+</h:body>
+</html>

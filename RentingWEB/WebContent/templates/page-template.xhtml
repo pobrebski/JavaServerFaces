@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main-template.xhtml">
+	<ui:define name="title">	
+		CRS
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="bottom-space">
+MOJA TRWAŁA ZAWARTOSC
+<h:form>     
+    <p:growl id="messages" showDetail="true" />
+ 
+    <p:toolbar>
+        <f:facet name="left">
+            <p:menuButton value="Edytuj użytkowników">
+                <p:menuitem value="Nowy użytkownik" action="#{userManager.newUser()}" update="messages"  />
+                <p:menuitem value="Edytuj użytkowników" action="#{userManager.viewAdminEditUserList()}" />
+                <p:menuitem value="Zarządzaj rolami użytkowników" action="#{bindroleManager.newBind()}" update="messages"  />
+            </p:menuButton>
+            <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+            <p:menuButton value="Edytuj Samochody">
+            <p:menuitem value="Dodaj nowy samochód" action="#{carManager.newCar()}" update="messages"  />
+            </p:menuButton>
+            <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+             <p:menuButton value="Edytuj Wypożyczenia">
+             <p:menuitem value="Dodaj nowe wypożyczenie" action="#{rentManager.newRent()}" update="messages"  />
+             <p:menuitem value="Dodaj tankowanie samochodu" action="#{refuelingManager.newRefueling()}" update="messages"  />
+             </p:menuButton>
+          <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+             <p:menuButton value="Edytuj funkcje systemu">
+              <p:menuitem value="Dodaj role systemowe" action="#{roleManager.newRole()}" update="messages"  />            
+             </p:menuButton>
+             <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+             <p:menuButton value="Przeglądaj dane">
+              <p:menuitem value="Przeglądaj samochody" action="#{carManager.viewCarList()}" update="messages"  />            
+              <p:menuitem value="Przeglądaj użytkowników systemu"  action="#{userManager.viewUserList()}" update="messages"  />            
+             <p:menuitem value="Przeglądaj wypożyczenia"  action="#{rentManager.viewRentList()}" update="messages"  />            
+             </p:menuButton>
+        </f:facet>
+     
+    </p:toolbar>
+</h:form>
+
+</div>
+
+		<ui:insert name="pageContent"></ui:insert>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

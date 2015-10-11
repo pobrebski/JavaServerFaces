@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+ 
+  <h:head>
+  	<meta charset="utf-8"/>
+	<title>Renting Web App</title>
+</h:head>
+<h:body>
+<h:form>     
+    <p:growl id="messages" showDetail="true" />
+ 
+    <p:toolbar>
+        <f:facet name="left">
+            <p:menuButton value="Edytuj użytkowników">
+                <p:menuitem value="Nowy użytkownik" action="#{userManager.newUser()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+                <p:menuitem value="Edytuj użytkowników" action="#{userManager.viewAdminEditUserList()}" />
+                <p:menuitem value="Zarządzaj rolami użytkowników" action="#{bindroleManager.newBind()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+            </p:menuButton>
+            <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+            <p:menuButton value="Edytuj Samochody">
+            <p:menuitem value="Dodaj nowy samochód" action="#{carManager.newCar()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+            </p:menuButton>
+            <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+             <p:menuButton value="Edytuj Wypożyczenia">
+             <p:menuitem value="Dodaj nowe wypożyczenie" action="#{rentManager.newRent()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+             <p:menuitem value="Dodaj tankowanie samochodu" action="#{refuelingManager.newRefueling()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+             </p:menuButton>
+          <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+             <p:menuButton value="Edytuj funkcje systemu">
+              <p:menuitem value="Dodaj role systemowe" action="#{roleManager.newRole()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />            
+             </p:menuButton>
+             <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+             <p:menuButton value="Przeglądaj dane systemowe">
+              <p:menuitem value="Przeglądaj samochody" action="#{carManager.viewCarList()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />            
+              <p:menuitem value="Przeglądaj użytkowników systemu"  action="#{userManager.viewUserList()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />            
+             <p:menuitem value="Przeglądaj wypożyczenia"  action="#{rentManager.viewRentList()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />            
+             </p:menuButton>
+        </f:facet>
+     
+    </p:toolbar>
+</h:form>
+<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-3">
+        ><h:form>
+<p>Witaj!</p>
+<p>Jesteś zalogowany jako <h:outputText value="{loginBean.user}"/>.</p>
+</h:form>
+        </div>
+        <div class="ui-grid-col-3"></div>
+        <div class="ui-grid-col-3"></div>
+        <div class="ui-grid-col-3"></div>
+    </div>
+</div>
+ 
+<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-4">
+                <h:form>
+        <p:accordionPanel>
+        <p:tab title="Zarządzanie użytkownikami">
+            <h:panelGrid columns="2" cellpadding="10">
+            <f:facet  name = "header">
+            <p:commandButton value="Rozpocznij" action="#{userManager.viewAdminEditUserList()}" />
+            </f:facet>
+		<h:outputText value="Zawiera opcje: dodania lub edycji użytkowników, zarządzania rolami użytkowników, zatwierdzania rejestracji etc..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Zarządzanie samochodami">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                <h:outputText value="Francis Ford Coppola's legendary..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Zarządzanie wypożyczeniami">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="After a break of more than 15 years..." />
+            </h:panelGrid>
+        </p:tab>
+    </p:accordionPanel>
+        </h:form>
+        
+        </div>
+        <div class="ui-grid-col-4">
+
+        </div>
+        <div class="ui-grid-col-4"></div>
+    </div>
+</div>
+ 
+<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-6"></div>
+        <div class="ui-grid-col-6"></div>
+    </div>
+</div>
+ 
+<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-12"></div>
+    </div>
+</div>
+
+
+
+
+
+<div>
+<h:form>
+<h:panelGrid columns="2" cellpadding="10">
+<h:commandButton value="Zarządzaj uzytkownikami" action="#{userManager.viewAdminEditUserList()}" />
+	<h:outputText value="Wybierz opcję dodania lub edycji userów" />
+            <p:commandButton value="DODAJ ROLE" action="#{roleManager.newRole()}" />
+                <h:outputText value="Wybierz opcję dodania lub edycji rol" />
+                <p:commandButton value="Dodaj USER"
+					action="#{userManager.newUser()}" />
+				<h:outputText value="Wybierz opcję dodania lub edycji userów" />
+				<p:commandButton value="BINDUJACY GUZIOR"
+					action="#{bindroleManager.newBind()}" />
+				<h:outputText value="Wybierz opcję dodania lub edycji userów" />
+				<p:commandButton value="nowy Samochód"
+					action="#{carManager.newCar()}" />
+				<h:outputText value="Wybierz opcję dodania lub edycji userów" />
+				<p:commandButton value="DODAJ WYNAJECIE" action="#{rentManager.newRent()}" />
+                <h:outputText value="Wybierz opcję dodania WYNAJĘCIE FURY DRABINIASTEJ" />
+                <p:commandButton value="DODAJ tankowanie" action="#{refuelingManager.newRefueling()}" />
+                <h:outputText value="LEJ PALIWO" />
+                <p:commandButton value="przegladaj fury" action="#{carManager.viewCarList()}" />
+                <h:outputText value="FURZ" />
+                 
+                 <p:commandButton value="przegladajwypozyczenia" action="#{rentManager.viewRentList()}" />
+                <h:outputText value="rentz" />
+            </h:panelGrid>
+            </h:form>
+            </div>
+           
+            <div>
+            <p:dataTable value="#{rentManager.list}" var="rent"
+				cellpadding="5" border="1" cellspacing="0">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="ID" />
+					</f:facet>
+					<h:outputText value="#{rent.idrent}" />
+					<f:param name="rf" value="#{rent.idrent}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="AKCJA 1" />
+					</f:facet>
+					<h:form>			
+					<p:commandButton value="dodaj spalanie" action = "#{refuelingManager.newRefueling(rent)}">
+					
+					</p:commandButton></h:form>
+				</p:column>
+				<p:column>
+				<f:facet name="header">
+						<h:outputText value="AKCJA 2" />
+					</f:facet>
+				<p:button value="przeglądaj statystyki" outcome = "/index">
+						<f:param name="rf" value="#{rent.idrent}" />
+					</p:button>	
+					
+				</p:column>
+				<p:column>
+				<f:facet name="header">
+						<h:outputText value="AKCJA 3" />
+					</f:facet>
+				<h:form>
+						<p:commandButton value="usuń"
+							action="#{rentManager.deleteRent(rent)}"  />
+					
+				</h:form>
+					
+				</p:column>
+
+			</p:dataTable> 
+            </div>
+</h:body>
+</html>

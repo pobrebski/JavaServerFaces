@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+
+
+
+
+
+	<div style="margin: 1em; background-color: #fff;">
+
+		<div style="padding: 1em; margin-bottom: 1em; border-radius: 0.2em;">
+		<h:panelGrid columns="2" cellpadding="10">
+			<h:form>
+				<fieldset style="padding: 1em; border-radius: 0.2em;">
+					<legend>Edycja rekordu</legend>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel for="carname" value="nazwa:" />
+						<h:inputText id="carname" value="#{carEdit.carname}" />
+						<h:outputLabel for="carrmake" value="Marka:" />
+						<h:inputText id="carrmake" value="#{carEdit.carrmake}" />
+						<h:outputLabel for="carregistrationyear" value="data rejestracji:" />
+						<h:inputText id="carregistrationyear" value="#{carEdit.carregistrationyear}" />
+						<h:outputLabel for="carplates" value="numer rejestracyjny:" />
+						<h:inputText id="carplates" value="#{carEdit.carplates}" />
+						<h:outputLabel for="cartype" value="Typ samochodu:" />
+						<h:inputText id="cartype" value="#{carEdit.cartype}" />
+						<h:outputLabel for="carcolor" value="kolor samochodu:" />
+						<h:inputText id="carcolor" value="#{carEdit.carcolor}" />
+					</h:panelGrid>
+					<h:messages />
+					<h:commandButton value="Zapisz" action="#{carEdit.saveData()}" 
+					style="margin-right: 1em;"/>
+					<h:button value="Anuluj" outcome="/index"/>
+				</fieldset>
+			</h:form>
+	<p:dataTable var="car" value="#{carManager.getList()}">
+<p:column>
+<f:facet name="header">
+<h:outputText value="ID" />
+</f:facet>
+<h:outputText value="#{car.idcar}" />
+<f:param name="p" value="#{car.idcar}"/>
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText value="NAME" />
+</f:facet>
+<h:outputText  value="#{car.carname}"/>
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText value="MARKA" />
+</f:facet>
+<h:outputText value="#{car.carrmake}" />
+</p:column>
+
+								<p:column>
+					<f:facet name="header">
+						<h:outputText value="data rejestracji:" />
+					</f:facet>
+					<h:outputText value="#{car.carregistrationyear}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="numer rejestracyjny:" />
+					</f:facet>
+					<h:outputText value="#{car.carplates}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Typ samochodu:" />
+					</f:facet>
+					<h:outputText value="#{car.cartype}" />
+				</p:column>
+					<p:column>
+					<f:facet name="header">
+						<h:outputText value="kolor samochodu:"/>
+					</f:facet>
+					<h:outputText value="#{car.carcolor}" />
+				</p:column>
+									<p:column>
+					<f:facet name="header">
+						<h:outputText value="opcje" />
+					</f:facet>
+					<p:button value="edytuj" outcome="cars">
+						<f:param name="p" value="#{car.idcar}" />
+					</p:button>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="usun" />
+					</f:facet>
+					<h:form>
+						<h:commandButton value="usuń"
+							action="#{carManager.deleteCar(car)}" update="table" />
+					</h:form>
+				</p:column>
+<!-- more collumns --> 
+
+</p:dataTable>
+</h:panelGrid>
+	</div>	
+
+	</div>
+</ui:define>
+</ui:composition>
+</html>

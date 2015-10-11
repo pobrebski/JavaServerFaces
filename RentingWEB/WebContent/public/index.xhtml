@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-4">4</div>
+        <div class="ui-grid-col-4">
+
+        <div>
+<h:form>
+<h:panelGrid columns="2" cellpadding="10">
+<p:commandButton value="PANEL ADMINA" action="/edit/admin/index" style="width:100px;height:100px"/>
+<h:outputText value="przejdz do panelu" />
+<h:button value="edytuj (GET)" outcome="/edit/admin/index" />
+                <h:outputText value="przejdz do panelu" />
+            <p:commandButton value="DODAJ ROLE" action="#{roleManager.newRole()}" />
+                <h:outputText value="Wybierz opcję dodania lub edycji rol" />
+                <p:commandButton value="Dodaj USER"
+					action="#{userManager.newUser()}" />
+				<h:outputText value="Wybierz opcję dodania lub edycji userów" />
+				<p:commandButton value="BINDUJACY GUZIOR"
+					action="#{bindroleManager.newBind()}" />
+				<h:outputText value="Wybierz opcję dodania lub edycji userów" />
+				<p:commandButton value="nowy Samochód"
+					action="#{carManager.newCar()}" />
+				<h:outputText value="Wybierz opcję dodania lub edycji userów" />
+				<p:commandButton value="DODAJ WYNAJECIE" action="#{rentManager.newRent()}" />
+                <h:outputText value="Wybierz opcję dodania WYNAJĘCIE FURY DRABINIASTEJ" />
+                <p:commandButton value="DODAJ tankowanie" action="#{refuelingManager.newRefueling()}" />
+                <h:outputText value="LEJ PALIWO" />
+                <p:commandButton value="przegladaj fury" action="#{carManager.viewCarList()}" />
+                <h:outputText value="FURZ" />
+                 <p:commandButton value="przegladaj userow" action="#{userManager.viewUserList()}" />
+                <h:outputText value="UseRZ" />
+                 <p:commandButton value="przegladajwypozyczenia" action="#{rentManager.viewRentList()}" />
+                <h:outputText value="rentz" />
+            </h:panelGrid>
+            </h:form>
+            </div>
+           
+            <div>
+            <p:dataTable value="#{rentManager.list}" var="rent"
+				cellpadding="5" border="1" cellspacing="0">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="ID" />
+					</f:facet>
+					<h:outputText value="#{rent.idrent}" />
+					<f:param name="rf" value="#{rent.idrent}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="AKCJA 1" />
+					</f:facet>
+					<h:form>			
+					<p:commandButton value="dodaj spalanie" action = "#{refuelingManager.newRefueling(rent)}">
+					
+					</p:commandButton></h:form>
+				</p:column>
+				<p:column>
+				<f:facet name="header">
+						<h:outputText value="AKCJA 2" />
+					</f:facet>
+				<p:button value="przeglądaj statystyki" outcome = "/index">
+						<f:param name="rf" value="#{rent.idrent}" />
+					</p:button>	
+					
+				</p:column>
+				<p:column>
+				<f:facet name="header">
+						<h:outputText value="AKCJA 3" />
+					</f:facet>
+				<h:form>
+						<p:commandButton value="usuń"
+							action="#{rentManager.deleteRent(rent)}"  />
+					
+				</h:form>
+					
+				</p:column>
+
+			</p:dataTable> 
+            </div>
+
+
+</div>
+        <div class="ui-grid-col-4">4</div>
+    </div>
+</div>
+
+
+
+<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-4">4</div>
+        <div class="ui-grid-col-4">4</div>
+        <div class="ui-grid-col-4">4</div>
+    </div>
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-4">4</div>
+        <div class="ui-grid-col-4">
+        
+
+        
+        
+        </div>
+        <div class="ui-grid-col-4">4</div>
+    </div>
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-4">4</div>
+        <div class="ui-grid-col-4">4</div>
+        <div class="ui-grid-col-4">4</div>
+    </div>
+</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>

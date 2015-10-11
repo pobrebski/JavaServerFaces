@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+
+
+
+
+			<h:form>
+			<p:growl id="msgs" showDetail="true" />
+				<fieldset style="padding: 1em; border-radius: 0.2em;">
+					<legend>Edycja rekordu</legend>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel for="name" value="Imię:" />
+						<h:inputText id="name" value="#{userEdit.name}" />
+						<h:outputLabel for="surname" value="Nazwisko:" />
+						<h:inputText id="surname" value="#{userEdit.surname}" />
+						<h:outputLabel for="address" value="Adres:" />
+						<h:inputText id="address" value="#{userEdit.address}" />
+						<h:outputLabel for="license" value="Numer prawa jazdy:" />
+						<h:inputText id="license" value="#{userEdit.license}" />
+						<h:outputLabel for="mail" value="Adres e-mail:" />
+						<h:inputText id="mail" value="#{userEdit.userEmail}" />
+						<h:outputLabel for="password" value="hasło:" />
+						<h:inputSecret id="password" value="#{userEdit.password}" />
+						<h:outputLabel for="pswdcompare" value="Potwierdz hasło:" />
+						<h:inputSecret id="pswdcompare" value="#{userEdit.pswdcompare}" />
+						<h:outputLabel for="username" value="NICK (opcjonalne)" />
+						<h:inputText id="username" value="#{userEdit.username}" />
+					</h:panelGrid>
+					<h:messages />
+					<h:commandButton value="Zapisz" action="#{userEdit.saveData()}" 
+					style="margin-right: 1em;"/>
+					<h:button value="Anuluj" outcome="/index"/>
+				</fieldset>
+			</h:form>
+</ui:define>
+</ui:composition>
+</html>

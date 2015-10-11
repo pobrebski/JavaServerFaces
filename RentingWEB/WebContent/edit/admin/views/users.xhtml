@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+
+
+
+	<div style="margin: 1em; background-color: #fff;">
+
+		<div style="padding: 1em; margin-bottom: 1em; border-radius: 0.2em;">
+		<h:panelGrid columns="2" cellpadding="10">
+		
+		<h:form>
+				<p:fieldset style="padding: 1em; border-radius: 0.2em;">
+					<legend>OKNO EDYCJI ISTNIEJACEGO UŻYTKOWNIKA</legend>
+					<p:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel for="u-name" value="imie:" />
+						<p:inputText id="u-name" value="#{userEdit.name}" />
+						<p:outputLabel for="u-surname" value="nazwisko:" />
+						<p:inputText id="u-surname" value="#{userEdit.surname}" />	
+						<p:outputLabel for="u-password" value="haslo:" />
+						<p:inputText id="u-password" value="#{userEdit.password}" />
+						<p:outputLabel for="u-pswdcompare" value="powtorz haslo:" />
+						<p:inputText id="u-pswdcompare" value="#{userEdit.pswdcompare}" />				
+					</p:panelGrid>
+					<p:messages />
+					<p:commandButton value="Zapisz" action="#{userEdit.saveData()}" 
+					style="margin-right: 1em;"/>
+				</p:fieldset>
+			</h:form>
+        
+         <p:dataTable value="#{userManager.getList()}" var="user"
+				cellpadding="5" border="1" cellspacing="0">
+				<p:column>
+<f:facet name="header">
+<h:outputText value="ID" />
+</f:facet>
+<h:outputText value="#{user.iduser}" />
+<f:param name="t" value="#{user.iduser}"/>
+</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Imie" />
+					</f:facet>
+					<h:outputText value="#{user.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nazwisko" />
+					</f:facet>
+					<h:outputText value="#{user.surname}" />
+				</p:column>
+								<p:column>
+					<f:facet name="header">
+						<h:outputText value="nick" />
+					</f:facet>
+					<h:outputText value="#{user.username}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="nick" />
+					</f:facet>
+					<h:outputText value="#{user.username}" />
+				</p:column>
+
+				<p:column>
+				<f:facet name="header">
+						<h:outputText value="EDYTUJ UŻYTKOWNIKA" />
+					</f:facet>
+					
+					<p:button value="edytuj" outcome="users">
+						<f:param name="u" value="#{user.iduser}" />
+					</p:button>
+					
+				</p:column>
+				<p:column>
+				<f:facet name="header">
+						<h:outputText value="USUŃ UŻYTKOWNIKA" />
+					</f:facet>
+					
+					<h:form>
+						<h:commandButton value="usuń"
+							action="#{userManager.deleteUser(user)}" update="table" />
+					</h:form>
+				</p:column>
+			</p:dataTable>  
+
+</h:panelGrid>
+	</div>	
+
+	</div>
+
+
+
+</ui:define>
+</ui:composition>
+</html>

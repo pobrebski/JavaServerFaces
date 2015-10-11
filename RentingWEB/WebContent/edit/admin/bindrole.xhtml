@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+
+
+ <h:form>
+ <p:growl id="msgs" showDetail="true" />
+        <p:dataTable value="#{bindroleEdit.users}"
+            selection="#{bindroleEdit.comparedu}" var="user"
+            rowKey="#{user.iduser}">
+            <p:column>
+                #{user.username}
+            </p:column>
+            <p:column>
+                #{user.surname}
+            </p:column>
+            <p:column>
+             #{user.iduser}
+            </p:column>
+            <p:column selectionMode="multiple" style="width:10%" />
+        </p:dataTable>
+        <p:commandButton value="send" action="#{bindroleEdit.saveData()}" />
+ <p:dataTable value="#{bindroleEdit.roles}"
+            selection="#{bindroleEdit.comparedr}" var="role"
+            rowKey="#{role.idrole}">
+             <p:column>
+                #{idrole}
+            </p:column>
+            <p:column>
+                #{role.roleName}
+            </p:column>
+             <p:column>
+                #{role.roleCode}
+            </p:column>
+             <p:column>
+                #{role.roleDescription}
+            </p:column>
+            <p:column selectionMode="multiple" style="width:8%" />
+        </p:dataTable>
+    </h:form>
+
+
+</ui:define>
+</ui:composition>
+</html>
